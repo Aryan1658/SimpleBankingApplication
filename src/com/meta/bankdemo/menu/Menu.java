@@ -10,7 +10,8 @@ public class Menu extends BaseIO {
         while (status) {
             display("1 Customer Section");
             display("2 Account Section");
-            display("3 Exit");
+            display("3 Transaction Section");
+            display("4 Exit");
             int choice = Integer.parseInt(readChoice("Enter your choice"));
             switch (choice) {
                 case 1:
@@ -20,6 +21,9 @@ public class Menu extends BaseIO {
                     new AccountMenu();
                     break;
                 case 3:
+                    new TransactionMenu();
+                    break;
+                case 4:
                     status = false;
                     display("********** Thanks for using Simple Application *********");
                     break;

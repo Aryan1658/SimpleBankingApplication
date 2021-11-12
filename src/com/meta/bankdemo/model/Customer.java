@@ -24,6 +24,15 @@ public class Customer {
         this.idName = idName;
     }
 
+    public Customer(Integer id, String fullName, String mobileNumber, String emailAddress, boolean isPremium, String dateOfBirth) {
+        this.id = id;
+        this.fullName = fullName;
+        this.mobileNumber = mobileNumber;
+        this.emailAddress = emailAddress;
+        this.isPremium = isPremium;
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public Integer getId() {
         return id;
     }

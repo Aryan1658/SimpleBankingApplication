@@ -12,6 +12,21 @@ public class Account {
     private String accountType;
     private Integer customerId;
 
+    public Account() {
+    }
+
+    public Account(Integer id, String accountNumber, String accountOpenDate, String accountClosedDate, Double primaryBalance, Double interestAccured, Double totalBalance, String accountType, Integer customerId) {
+        this.id = id;
+        this.accountNumber = accountNumber;
+        this.accountOpenDate = accountOpenDate;
+        this.accountClosedDate = accountClosedDate;
+        this.primaryBalance = primaryBalance;
+        this.interestAccured = interestAccured;
+        this.totalBalance = totalBalance;
+        this.accountType = accountType;
+        this.customerId = customerId;
+    }
+
     public Integer getId() {
         return id;
     }

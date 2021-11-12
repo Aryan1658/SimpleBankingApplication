@@ -15,7 +15,9 @@ public class BaseIO {
 
     public String read(String fieldName) {
         try {
+            display("------------------------------");
             display("Enter customer's " + fieldName);
+            display("------------------------------");
             return bufferedReader.readLine();
 
         } catch (Exception ex) {
@@ -27,7 +29,9 @@ public class BaseIO {
 
     public String readChoice(String message) {
         try {
+            display("------------------------------");
             display(message);
+
             return bufferedReader.readLine();
 
         } catch (Exception ex) {

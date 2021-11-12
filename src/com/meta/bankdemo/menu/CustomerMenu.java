@@ -2,14 +2,19 @@ package com.meta.bankdemo.menu;
 
 import com.meta.bankdemo.db.services.CustomerDatabaseService;
 import com.meta.bankdemo.model.Customer;
+import com.meta.bankdemo.service.impl.CustomerService;
+import com.meta.bankdemo.service.impl.CustomerServiceImpl;
 import com.meta.bankdemo.userIO.BaseIO;
 import com.meta.bankdemo.userIO.CustomerIO;
+
+import java.util.List;
 
 public class CustomerMenu extends CustomerIO {
 
     public CustomerMenu() {
         display("********** Welcome to Customer Section *********");
         CustomerDatabaseService customerDatabaseService = new CustomerDatabaseService();
+        CustomerService customerService = new CustomerServiceImpl();
         boolean status = true;
         while (status) {
             display("1 Customer Create");
@@ -34,6 +39,8 @@ public class CustomerMenu extends CustomerIO {
                     break;
                 case 3:
                     display("Customer list section");
+                    List<Customer> customerList = ((CustomerServiceImpl) customerService).findAll();
+                    displayCustomerList(customerList);
                     break;
                 case 4:
                     status = false;

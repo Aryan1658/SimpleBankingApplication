@@ -2,11 +2,16 @@ package com.meta.bankdemo.db.services;
 
 import com.meta.bankdemo.db.DBConnection;
 import com.meta.bankdemo.model.Customer;
+import com.meta.bankdemo.userIO.BaseIO;
 import com.meta.bankdemo.utils.DateTimeUtils;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.Date;
+import java.util.List;
 
-public class CustomerDatabaseService {
+public class CustomerDatabaseService extends BaseIO {
     DBConnection dbConnection = new DBConnection();
 
     public int createCustomer(Customer customer) {
@@ -33,4 +38,33 @@ public class CustomerDatabaseService {
         }
     }
 
+    public List<Customer> findAllCustomer(){
+        List<Customer> customerList = new ArrayList<>();
+
+        try{
+            String selectAllCustomerSQL = "select id,full_name,mobile_number,email_address,is_premium,date_of_birth\n" +
+                    "from tbl_customer";
+            PreparedStatement preparedStatement = dbConnection.connection.prepareStatement(selectAllCustomerSQL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Integer id = resultSet.getInt("id");
+                String fullName = resultSet.getString("full_name");
+                String mobile_number = resultSet.getString("mobile_number");
+                String emailAddress = resultSet.getString("email_address");
+                Boolean is_premium = resultSet.getBoolean("is_premium");
+                Date dateOfBirth = resultSet.getDate("date_of_birth");
+
+                Customer customer = new Customer(id,
+                        fullName,mobile_number,
+                        emailAddress,
+                        is_premium,
+                        DateTimeUtils.convertDateToString(dateOfBirth));
+                customerList.add(customer);
+
+            }
+        }catch(Exception ex){
+            display(ex.getMessage());
+        }
+            return customerList;
+    }
 }
